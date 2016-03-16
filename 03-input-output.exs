@@ -10,12 +10,12 @@ defmodule CowInterrogator do
   Gets name from standard IO
   """
   def get_name do
-
-    String.strip IO.gets("What is your name? ")
+    IO.gets("What is your name? ")
+    |> String.strip
   end
 
   def get_cow_lover do
-    IO.getn("Do you like cows? [y|n]", 1)
+    IO.getn("Do you like cows? [y|n] ", 1)
   end
 
   def interrogate do
@@ -27,7 +27,7 @@ defmodule CowInterrogator do
       "n" ->
         IO.puts "That's a shame, #{name}."
       _ ->
-        IO.puts "You should have entered 'Y' or 'N'."
+        IO.puts "You should have entered 'y' or 'n'."
     end
   end
 
@@ -50,7 +50,7 @@ defmodule InputOutputTest do
   test "checks if cow_art returns string from support/cow.txt" do
     # this call checks if cow_art function returns art from txt file
     art = CowInterrogator.cow_art
-    assert String.strip(art) |> first == "(" # first is implemented in String module
+    assert strip(art) |> first == "(" # first is implemented in String module
   end
 end
 
